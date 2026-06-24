@@ -2,7 +2,7 @@
   "name": "arcade-canvas",
   "version": "1.0.0",
   "main": "extension.mjs",
-  "author": "Dan Wahlin",
+  "author": { "name": "Dan Wahlin", "url": "https://github.com/DanWahlin" },
   "license": "MIT",
   "type": "module",
   "dependencies": {

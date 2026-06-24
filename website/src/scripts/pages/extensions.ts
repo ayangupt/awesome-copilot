@@ -15,6 +15,7 @@ import {
   getGitHubUrl,
   getQueryParam,
   getQueryParamValues,
+  sanitizeUrl,
   showToast,
   updateQueryParams,
 } from "../utils";
@@ -177,6 +178,19 @@ function openDetailsModal(
   const metaParts: string[] = [];
   if (item.external) {
     metaParts.push('<span class="resource-tag">External</span>');
+  }
+  if (item.author?.name) {
+    metaParts.push(
+      item.author.url
+        ? `<span class="resource-author">by <a href="${sanitizeUrl(
+            item.author.url
+          )}" target="_blank" rel="noopener noreferrer">${escapeHtml(
+            item.author.name
+          )}</a></span>`
+        : `<span class="resource-author">by ${escapeHtml(
+            item.author.name
+          )}</span>`
+    );
   }
   if (item.lastUpdated) {
     metaParts.push(

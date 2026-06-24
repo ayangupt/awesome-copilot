@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "main": "extension.mjs",
+  "author": { "name": "Aaron Powell", "url": "https://github.com/aaronpowell" },
   "dependencies": {
     "@github/copilot-sdk": "latest"
   },

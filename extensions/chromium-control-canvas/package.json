@@ -2,7 +2,7 @@
   "name": "chromium-control-canvas",
   "version": "1.0.0",
   "main": "extension.mjs",
-  "author": "Andrea Griffiths",
+  "author": { "name": "Andrea Griffiths", "url": "https://github.com/AndreaGriffiths11" },
   "license": "MIT",
   "type": "module",
   "dependencies": {

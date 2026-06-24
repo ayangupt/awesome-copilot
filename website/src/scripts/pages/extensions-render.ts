@@ -1,4 +1,4 @@
-import { escapeHtml, getGitHubUrl, getLastUpdatedHtml } from "../utils";
+import { escapeHtml, getGitHubUrl, getLastUpdatedHtml, sanitizeUrl } from "../utils";
 import { renderEmptyStateHtml, renderSharedCardHtml } from "./card-render";
 
 export interface RenderableExtension {
@@ -34,6 +34,7 @@ export interface RenderableExtension {
   installUrl?: string | null;
   sourceUrl?: string | null;
   external?: boolean;
+  author?: { name: string; url?: string } | null;
 }
 
 export type ExtensionSortOption = "title" | "lastUpdated";
@@ -92,8 +93,21 @@ export function renderExtensionsHtml(items: RenderableExtension[]): string {
         </div>
       `;
 
+      const authorHtml = item.author?.name
+        ? `<span class="resource-tag resource-author">by ${
+            item.author.url
+              ? `<a href="${sanitizeUrl(
+                  item.author.url
+                )}" target="_blank" rel="noopener noreferrer">${escapeHtml(
+                  item.author.name
+                )}</a>`
+              : escapeHtml(item.author.name)
+          }</span>`
+        : "";
+
       const metaHtml = `
         ${item.external ? '<span class="resource-tag">External</span>' : ""}
+        ${authorHtml}
         ${getLastUpdatedHtml(item.lastUpdated)}
       `;
 

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "main": "extension.mjs",
+  "author": { "name": "Aaron Powell", "url": "https://github.com/aaronpowell" },
   "description": "Reconstruct your dev context (branch, commits, uncommitted work, PR clues) and trigger a resume prompt to continue quickly.",
   "keywords": [
     "interrupt-recovery",

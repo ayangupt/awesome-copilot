@@ -102,6 +102,25 @@ function normalizeText(value, fallback = "") {
 }
 
 /**
+ * Normalize an author value (npm string form or { name, url } object) to
+ * { name, url? } | null. Returns null when no usable name is present.
+ */
+function normalizeAuthor(value) {
+  if (!value) return null;
+  if (typeof value === "string") {
+    const name = value.trim();
+    return name ? { name } : null;
+  }
+  if (typeof value === "object") {
+    const name = normalizeText(value.name);
+    if (!name) return null;
+    const url = normalizeText(value.url);
+    return url ? { name, url } : { name };
+  }
+  return null;
+}
+
+/**
  * Find the latest git-modified date for any file under a directory.
  */
 function getDirectoryLastUpdated(gitDates, relativeDirPath) {
@@ -1044,6 +1063,7 @@ function generateCanvasManifest(gitDates, commitSha) {
         installUrl,
         sourceUrl: null,
         external: false,
+        author: normalizeAuthor(packageJson.author),
         keywords,
       });
     }
@@ -1116,6 +1136,7 @@ function generateCanvasManifest(gitDates, commitSha) {
             installUrl,
             sourceUrl: sourceUrl || null,
             external: true,
+            author: normalizeAuthor(ext?.author),
             keywords,
           });
         }

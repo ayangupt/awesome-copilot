@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "main": "extension.mjs",
+  "author": { "name": "James Montemagno", "url": "https://github.com/jamesmontemagno" },
   "dependencies": {
     "@github/copilot-sdk": "1.0.1"
   },
